@@ -1,0 +1,21 @@
+{
+    "name": "webgpu-n-canvas",
+    "description": "demo of many webgpu canvases",
+    "main": "dist/main.js",
+    "module": "dist/main.es.js",
+    "files": ["dist"],
+    "types": "dist/main.d.ts",
+    "scripts": {
+        "build": "rollup -c"
+    },
+    "dependencies": {
+        "gl-matrix": "^3.2.1"
+    },
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^4.1.1",
+        "@webgpu/types": "^0.0.23",
+        "rollup": "^2.6.0",
+        "ts-loader": "^6.2.2",
+        "typescript": "^3.8.3"
+    }
+}
