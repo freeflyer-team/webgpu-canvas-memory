@@ -1,4 +1,4 @@
-import * as helloTriangle from './helloTriangle';
+import helloTriangle from './helloTriangle';
 
 const canvasContainer = document.getElementById('canvas-container');
 
@@ -20,38 +20,36 @@ class ExampleInstance {
 
 let currentLoadCount = 0;
 
-async function load() {
-    canvasContainer.innerHTML = "";
-    currentLoadCount++;
+canvasContainer.innerHTML = "";
+currentLoadCount++;
 
-    let numCanvases = 20;
+let numCanvases = 20;
 
-    for(var i = 0; i < numCanvases; i++)
+for(var i = 0; i < numCanvases; i++)
+{
+    let canvas = document.createElement('canvas');
+
+    canvas.width = 100;
+    canvas.height = 100;
+
+    canvasContainer.appendChild(canvas);
+
+    helloTriangle(canvas).then((frame) =>
     {
-        let canvas = document.createElement('canvas');
-        canvas.width = 100;
-        canvas.height = 100;
-        canvasContainer.appendChild(canvas);
+        let instance = new ExampleInstance();
 
-        helloTriangle.init(canvas).then((frame) =>
+        instance.loadCount = currentLoadCount;
+
+        instance.frameCallback = (timestamp) =>
         {
-            let ei = new ExampleInstance();
+            if(instance.loadCount != currentLoadCount)
+                return false;
+            
+            frame();
 
-            ei.loadCount = currentLoadCount;
+            return true;
+        };
     
-            ei.frameCallback = (timestamp) =>
-            {
-                if(ei.loadCount != currentLoadCount)
-                    return false;
-                
-                frame();
-    
-                return true;
-            };
-        
-            ei.animate();    
-        });
-    }
+        instance.animate();    
+    });
 }
-
-load();

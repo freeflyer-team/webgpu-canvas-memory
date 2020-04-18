@@ -1,9 +1,12 @@
-import glslangModule from './glslang';
-
 export const title = 'Hello Triangle';
+
 export const description = 'Shows rendering a basic triangle.';
 
-export async function init(canvas: HTMLCanvasElement) {
+export default async (canvas: HTMLCanvasElement) => {
+    const glslang = await import('@webgpu/glslang/dist/web-devel/glslang.js').then((mod) => {
+        return mod.default()
+    });
+
     const vertexShaderGLSL = `#version 450
       const vec2 pos[3] = vec2[3](vec2(0.0f, 0.5f), vec2(-0.5f, -0.5f), vec2(0.5f, -0.5f));
 
@@ -21,8 +24,8 @@ export async function init(canvas: HTMLCanvasElement) {
     `;
 
     const adapter = await navigator.gpu.requestAdapter();
+
     const device = await adapter.requestDevice();
-    const glslang = await glslangModule();
 
     const context = canvas.getContext('gpupresent');
 
@@ -39,21 +42,22 @@ export async function init(canvas: HTMLCanvasElement) {
 
       vertexStage: {
         module: device.createShaderModule({
-          code: glslang.compileGLSL(vertexShaderGLSL, "vertex"),
+            
+          code: glslang.compileGLSL(vertexShaderGLSL, "vertex", false),
 
           // @ts-ignore
           source: vertexShaderGLSL,
-          transform: source => glslang.compileGLSL(source, "vertex"),
+          transform: source => glslang.compileGLSL(source, "vertex", false),
         }),
         entryPoint: "main"
       },
       fragmentStage: {
         module: device.createShaderModule({
-          code: glslang.compileGLSL(fragmentShaderGLSL, "fragment"),
+          code: glslang.compileGLSL(fragmentShaderGLSL, "fragment", false),
 
           // @ts-ignore
           source: fragmentShaderGLSL,
-          transform: source => glslang.compileGLSL(source, "fragment"),
+          transform: source => glslang.compileGLSL(source, "fragment", false),
         }),
         entryPoint: "main"
       },

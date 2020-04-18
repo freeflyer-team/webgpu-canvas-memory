@@ -1,17 +1,26 @@
 import typescript from "@rollup/plugin-typescript";
-import pkg from "./package.json"
+import resolve from "@rollup/plugin-node-resolve";
+import copy from "rollup-plugin-copy";
 
-export default [
-    {
-        input: 'src/main.ts',
-        output: [
-            {
-                file: 'dist/main.ts',
-                format: 'cjs'
-            }
-        ],
-        plugins: [
-            typescript()
-        ]
-    }
-]
+export default {
+    input: "src/main.ts",
+    output: {
+        file: "public/bundle.js",
+        format: "es"
+    },
+    inlineDynamicImports: true,
+    plugins: [
+        copy({
+            targets: [
+                {
+                    src: "node_modules/@webgpu/glslang/dist/web-devel/glslang.wasm",
+                    dest: "public"
+                }
+            ]
+        }),
+        resolve({
+            browser: true,
+        }),
+        typescript()
+    ]
+}
