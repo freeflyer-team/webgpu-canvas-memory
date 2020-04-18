@@ -1,4 +1,4 @@
-import glslangModule from 'glslang.ts';
+import glslangModule from './glslang';
 
 export const title = 'Hello Triangle';
 export const description = 'Shows rendering a basic triangle.';

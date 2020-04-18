@@ -3,7 +3,9 @@
     "description": "demo of many webgpu canvases",
     "main": "dist/main.js",
     "module": "dist/main.es.js",
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "types": "dist/main.d.ts",
     "scripts": {
         "build": "rollup -c"
@@ -16,6 +18,7 @@
         "@webgpu/types": "^0.0.23",
         "rollup": "^2.6.0",
         "ts-loader": "^6.2.2",
+        "tslib": "^1.11.1",
         "typescript": "^3.8.3"
     }
 }

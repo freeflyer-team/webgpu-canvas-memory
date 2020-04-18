@@ -1,4 +1,4 @@
-import * as helloTriangle from './helloTriangle.ts';
+import * as helloTriangle from './helloTriangle';
 
 const canvasContainer = document.getElementById('canvas-container');
 
@@ -44,7 +44,7 @@ async function load() {
                 if(ei.loadCount != currentLoadCount)
                     return false;
                 
-                frame(timestamp);
+                frame();
     
                 return true;
             };

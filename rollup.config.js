@@ -9,6 +9,9 @@ export default [
                 file: 'dist/main.ts',
                 format: 'cjs'
             }
+        ],
+        plugins: [
+            typescript()
         ]
     }
 ]
