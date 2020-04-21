@@ -7,7 +7,8 @@
     ],
     "scripts": {
         "build": "rollup -c",
-        "start": "http-server -c-1 public"
+        "start": "http-server -c-1 public",
+        "deploy": "gh-pages -d public"
     },
     "dependencies": {
         "gl-matrix": "^3.2.1"
@@ -18,6 +19,7 @@
         "@rollup/plugin-typescript": "^4.1.1",
         "@webgpu/glslang": "^0.0.15",
         "@webgpu/types": "^0.0.23",
+        "gh-pages": "^2.2.0",
         "http-server": "^0.12.1",
         "rollup": "^2.6.0",
         "rollup-plugin-copy": "^3.3.0",
