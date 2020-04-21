@@ -1,7 +1,3 @@
-export const title = 'Hello Triangle';
-
-export const description = 'Shows rendering a basic triangle.';
-
 export default async (canvas: HTMLCanvasElement) => {
     const glslang = await import('@webgpu/glslang/dist/web-devel/glslang.js').then((mod) => {
         return mod.default()
@@ -81,6 +77,7 @@ export default async (canvas: HTMLCanvasElement) => {
       };
 
       const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
+
       passEncoder.setPipeline(pipeline);
       passEncoder.draw(3, 1, 0, 0);
       passEncoder.endPass();

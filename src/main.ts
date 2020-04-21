@@ -1,6 +1,6 @@
 import helloTriangle from './helloTriangle';
 
-const canvasContainer = document.getElementById('canvas-container');
+const container = document.getElementById('root');
 
 class ExampleInstance {
     public frameCallback: (timestamp: number) => boolean;
@@ -20,19 +20,18 @@ class ExampleInstance {
 
 let currentLoadCount = 0;
 
-canvasContainer.innerHTML = "";
 currentLoadCount++;
 
 let numCanvases = 20;
 
 for(var i = 0; i < numCanvases; i++)
 {
-    let canvas = document.createElement('canvas');
+    const canvas = document.createElement('canvas') as HTMLCanvasElement;
 
     canvas.width = 100;
     canvas.height = 100;
 
-    canvasContainer.appendChild(canvas);
+    container.appendChild(canvas);
 
     helloTriangle(canvas).then((frame) =>
     {
