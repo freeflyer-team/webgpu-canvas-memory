@@ -68,7 +68,7 @@ var helloTriangle = async (canvas) => {
     return frame;
 };
 
-const canvasContainer = document.getElementById('canvas-container');
+const canvas = document.getElementById('root');
 class ExampleInstance {
     animate() {
         requestAnimationFrame((timestamp) => { this.animate_internal(timestamp); });
@@ -80,14 +80,14 @@ class ExampleInstance {
     }
 }
 let currentLoadCount = 0;
-canvasContainer.innerHTML = "";
+canvas.innerHTML = "";
 currentLoadCount++;
 let numCanvases = 20;
 for (var i = 0; i < numCanvases; i++) {
     let canvas = document.createElement('canvas');
     canvas.width = 100;
     canvas.height = 100;
-    canvasContainer.appendChild(canvas);
+    canvas.appendChild(canvas);
     helloTriangle(canvas).then((frame) => {
         let instance = new ExampleInstance();
         instance.loadCount = currentLoadCount;
